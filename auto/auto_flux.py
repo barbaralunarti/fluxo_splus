@@ -29,8 +29,7 @@ from astropy.wcs import WCS
 
 # %%
 
-# conn = splusdata.connect('barbaralunarti','Bah@wwe12')
-conn = splusdata.connect('hektor.monteiro','oiii5007')
+conn = splusdata.connect('username','password')
 
 # %%
 
