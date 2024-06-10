@@ -261,7 +261,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'u_iso', 'u_auto', 'u_petro', 'e_u_iso', 'e_u_auto', 'e_u_petro']
 df_u = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 113, 115]
+table_to_skip = [4, 31, 80, 81, 113]
 
 iso_mags=[]
 iso_errors=[]
@@ -399,8 +399,24 @@ g.plot_marginals(sns.distplot)
 
 # %%
 
+x_label = range(len(df_u))
+fig, ax = plt.subplots(figsize=(26, 6))
+trans1 = Affine2D().translate(-0.25, 0.0) + ax.transData
+trans2 = Affine2D().translate(+0.25, 0.0) + ax.transData
+
+plt.errorbar(df_u['Object'], df_u['u_iso'], yerr=df_u['e_u_iso'], fmt='o', capsize=5, color='green', transform=trans1)
+plt.errorbar(df_u['Object'], df_u['u_auto'], yerr=df_u['e_u_auto'], fmt='o', capsize=5, color='red')
+plt.errorbar(df_u['Object'], df_u['u_petro'], yerr=df_u['e_u_petro'], fmt='o', capsize=5, color='mediumblue', transform=trans2)
+plt.title("Filtro U")
+plt.legend(labels=['ISO', 'AUTO', 'PETRO'])
+plt.xticks(rotation=90, ha='right')
+plt.ylabel('Mag (AB)')
+plt.show
+
+# %%
+
 x_label = range(len(df_u['Object']))
-fig, ax = plt.subplots(figsize=(15, 24))
+fig, ax = plt.subplots(figsize=(15, 26))
 
 plt.errorbar(df_u['u_iso'], x_label, xerr=df_u['e_u_iso'], fmt='o', capsize=5, color='green')
 plt.errorbar(df_u['u_auto'], x_label, xerr=df_u['e_u_auto'], fmt='o', capsize=5, color='red')
@@ -429,8 +445,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13.5, 20, 0.25))
-plt.yticks(np.arange(13.5, 20, 0.25))
+plt.xticks(np.arange(13.5, 21, 0.25))
+plt.yticks(np.arange(13.5, 21, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -450,8 +466,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13.5, 20, 0.25))
-plt.yticks(np.arange(13.5, 20, 0.25))
+plt.xticks(np.arange(13.5, 21, 0.25))
+plt.yticks(np.arange(13.5, 22, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -471,8 +487,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13.5, 20, 0.25))
-plt.yticks(np.arange(13.5, 20, 0.25))
+plt.xticks(np.arange(13.5, 22, 0.25))
+plt.yticks(np.arange(13.5, 21.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -601,7 +617,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'g_iso', 'g_auto', 'g_petro', 'e_g_iso', 'e_g_auto', 'e_g_petro']
 df_g = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 113, 115]
+table_to_skip = [4]
 
 iso_mags=[]
 iso_errors=[]
@@ -768,8 +784,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12, 18.25, 0.25))
-plt.yticks(np.arange(12, 18.25, 0.25))
+plt.xticks(np.arange(12, 19.5, 0.25))
+plt.yticks(np.arange(12, 19.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -789,8 +805,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12, 18.25, 0.25))
-plt.yticks(np.arange(12, 18.25, 0.25))
+plt.xticks(np.arange(12, 19.25, 0.25))
+plt.yticks(np.arange(12, 19.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -810,8 +826,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12, 18.25, 0.25))
-plt.yticks(np.arange(12, 18.25, 0.25))
+plt.xticks(np.arange(12, 19.25, 0.25))
+plt.yticks(np.arange(12, 19.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -940,7 +956,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'r_iso', 'r_auto', 'r_petro', 'e_r_iso', 'e_r_auto', 'e_r_petro']
 df_r = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 75]
 
 iso_mags=[]
 iso_errors=[]
@@ -1107,8 +1123,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 18, 0.25))
-plt.yticks(np.arange(11, 18, 0.25))
+plt.xticks(np.arange(11, 18.5, 0.25))
+plt.yticks(np.arange(11, 18.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1128,8 +1144,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 18, 0.25))
-plt.yticks(np.arange(11, 18, 0.25))
+plt.xticks(np.arange(11, 18.5, 0.25))
+plt.yticks(np.arange(11, 18.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1149,8 +1165,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 18, 0.25))
-plt.yticks(np.arange(11, 18, 0.25))
+plt.xticks(np.arange(11, 18.5, 0.25))
+plt.yticks(np.arange(11, 18.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1279,7 +1295,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'i_iso', 'i_auto', 'i_petro', 'e_i_iso', 'e_i_auto', 'e_i_petro']
 df_i = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 75, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 75]
 
 iso_mags=[]
 iso_errors=[]
@@ -1446,8 +1462,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.75, 18.25, 0.25))
+plt.yticks(np.arange(10.75, 18.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1467,8 +1483,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.75, 18.25, 0.25))
+plt.yticks(np.arange(10.75, 18, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1488,8 +1504,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.75, 18, 0.25))
+plt.yticks(np.arange(10.75, 18.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1618,7 +1634,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'z_iso', 'z_auto', 'z_petro', 'e_z_iso', 'e_z_auto', 'e_z_petro']
 df_z = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 75, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 75]
 
 iso_mags=[]
 iso_errors=[]
@@ -1785,8 +1801,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17, 0.25))
-plt.yticks(np.arange(10.5, 17, 0.25))
+plt.xticks(np.arange(10.5, 18, 0.25))
+plt.yticks(np.arange(10.5, 18, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1806,8 +1822,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17, 0.25))
-plt.yticks(np.arange(10.5, 17, 0.25))
+plt.xticks(np.arange(10.5, 17.75, 0.25))
+plt.yticks(np.arange(10.5, 17.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1827,8 +1843,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.5, 17.75, 0.25))
+plt.yticks(np.arange(10.5, 17.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -1957,7 +1973,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0378_iso', 'J0378_auto', 'J0378_petro', 'e_J0378_iso', 'e_J0378_auto', 'e_J0378_petro']
 df_J0378 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 44, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 21, 31, 80]
 
 iso_mags=[]
 iso_errors=[]
@@ -2124,8 +2140,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 19.5, 0.25))
-plt.yticks(np.arange(13, 19.5, 0.25))
+plt.xticks(np.arange(13, 22.75, 0.25))
+plt.yticks(np.arange(13, 22.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2145,8 +2161,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 19.5, 0.25))
-plt.yticks(np.arange(13, 19.5, 0.25))
+plt.xticks(np.arange(13, 22.75, 0.25))
+plt.yticks(np.arange(13, 22, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2166,8 +2182,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 20, 0.25))
-plt.yticks(np.arange(13, 20, 0.25))
+plt.xticks(np.arange(13, 21.75, 0.25))
+plt.yticks(np.arange(13, 22.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2296,7 +2312,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0395_iso', 'J0395_auto', 'J0395_petro', 'e_J0395_iso', 'e_J0395_auto', 'e_J0395_petro']
 df_J0395 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 44, 45, 48, 49, 55, 57, 59, 61, 62, 63, 64, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 21, 31, 43, 80]
 
 iso_mags=[]
 iso_errors=[]
@@ -2463,8 +2479,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 20, 0.25))
-plt.yticks(np.arange(13, 20, 0.25))
+plt.xticks(np.arange(13.25, 22, 0.25))
+plt.yticks(np.arange(13.25, 20.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2484,8 +2500,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 20, 0.25))
-plt.yticks(np.arange(13, 20, 0.25))
+plt.xticks(np.arange(13.25, 22, 0.25))
+plt.yticks(np.arange(13.25, 20.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2505,8 +2521,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(13, 21, 0.25))
-plt.yticks(np.arange(13, 21, 0.25))
+plt.xticks(np.arange(13.25, 21, 0.25))
+plt.yticks(np.arange(13.25, 20.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2635,7 +2651,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0410_iso', 'J0410_auto', 'J0410_petro', 'e_J0410_iso', 'e_J0410_auto', 'e_J0410_petro']
 df_J0410 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 44, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 31, 41, 80]
 
 iso_mags=[]
 iso_errors=[]
@@ -2775,8 +2791,8 @@ g.plot_marginals(sns.distplot)
 
 x_label = range(len(df_J0410))
 fig, ax = plt.subplots(figsize=(24, 6))
-trans1 = Affine2D().translate(-0.25, 0.0) + ax.transData
-trans2 = Affine2D().translate(+0.25, 0.0) + ax.transData
+trans1 = Affine2D().translate(-0.5, 0.0) + ax.transData
+trans2 = Affine2D().translate(+0.5, 0.0) + ax.transData
 
 plt.errorbar(df_J0410['Object'], df_J0410['J0410_iso'], yerr=df_J0410['e_J0410_iso'], fmt='o', capsize=5, color='green', transform=trans1)
 plt.errorbar(df_J0410['Object'], df_J0410['J0410_auto'], yerr=df_J0410['e_J0410_auto'], fmt='o', capsize=5, color='red')
@@ -2803,7 +2819,7 @@ plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
 plt.xticks(np.arange(12.5, 20, 0.25))
-plt.yticks(np.arange(12.5, 20, 0.25))
+plt.yticks(np.arange(12.5, 20.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2844,8 +2860,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12.5, 19.75, 0.25))
-plt.yticks(np.arange(12.5, 19.75, 0.25))
+plt.xticks(np.arange(12.5, 20, 0.25))
+plt.yticks(np.arange(12.5, 20.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -2974,7 +2990,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0430_iso', 'J0430_auto', 'J0430_petro', 'e_J0430_iso', 'e_J0430_auto', 'e_J0430_petro']
 df_J0430 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 31, 43, 80]
 
 iso_mags=[]
 iso_errors=[]
@@ -3141,8 +3157,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12.5, 19.25, 0.25))
-plt.yticks(np.arange(12.5, 19.25, 0.25))
+plt.xticks(np.arange(12.5, 19.75, 0.25))
+plt.yticks(np.arange(12.5, 20.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3162,8 +3178,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12.5, 19.25, 0.25))
-plt.yticks(np.arange(12.5, 19.25, 0.25))
+plt.xticks(np.arange(12.5, 19.5, 0.25))
+plt.yticks(np.arange(12.5, 19.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3184,7 +3200,7 @@ plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
 plt.xticks(np.arange(12.5, 19.75, 0.25))
-plt.yticks(np.arange(12.5, 19.75, 0.25))
+plt.yticks(np.arange(12.5, 20.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3313,7 +3329,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0515_iso', 'J0515_auto', 'J0515_petro', 'e_J0515_iso', 'e_J0515_auto', 'e_J0515_petro']
 df_J0515 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 31]
 
 iso_mags=[]
 iso_errors=[]
@@ -3480,8 +3496,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12, 18.25, 0.25))
-plt.yticks(np.arange(12, 18.25, 0.25))
+plt.xticks(np.arange(12, 19, 0.25))
+plt.yticks(np.arange(12, 19.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3501,8 +3517,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(12, 18.25, 0.25))
-plt.yticks(np.arange(12, 18.25, 0.25))
+plt.xticks(np.arange(12, 19, 0.25))
+plt.yticks(np.arange(12, 20, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3522,8 +3538,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11.5, 18.5, 0.25))
-plt.yticks(np.arange(11.5, 18.5, 0.25))
+plt.xticks(np.arange(11.5, 20, 0.25))
+plt.yticks(np.arange(11.5, 19.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3652,7 +3668,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0660_iso', 'J0660_auto', 'J0660_petro', 'e_J0660_iso', 'e_J0660_auto', 'e_J0660_petro']
 df_J0660 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 75, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 75]
 
 iso_mags=[]
 iso_errors=[]
@@ -3819,8 +3835,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 18, 0.25))
-plt.yticks(np.arange(11, 18, 0.25))
+plt.xticks(np.arange(11, 18.25, 0.25))
+plt.yticks(np.arange(11, 18.5, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3840,8 +3856,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 17.5, 0.25))
-plt.yticks(np.arange(11, 17.5, 0.25))
+plt.xticks(np.arange(11, 18.5, 0.25))
+plt.yticks(np.arange(11, 18.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3861,8 +3877,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(11, 17.5, 0.25))
-plt.yticks(np.arange(11, 17.5, 0.25))
+plt.xticks(np.arange(11, 18.25, 0.25))
+plt.yticks(np.arange(11, 18.75, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -3991,7 +4007,7 @@ objs_DT_ID=['iDR4_3_SPLUS-s38s28_0037355',
 x_values = ["ISO","AUTO","PETRO"]
 columns_filter = ['Object', 'J0861_iso', 'J0861_auto', 'J0861_petro', 'e_J0861_iso', 'e_J0861_auto', 'e_J0861_petro']
 df_J0861 = pd.DataFrame(columns = columns_filter)
-table_to_skip = [1, 4, 5, 7, 8, 10, 14, 15, 21, 22, 23, 24, 26, 29, 31, 34, 38, 41, 42, 43, 45, 48, 49, 55, 57, 59, 61, 62, 63, 65, 68, 71, 73, 74, 75, 80, 81, 83, 84, 85, 86, 87, 88, 90, 91, 92, 94, 95, 96, 97, 99, 100, 107, 111, 112, 115]
+table_to_skip = [4, 75, 81]
 
 iso_mags=[]
 iso_errors=[]
@@ -4158,8 +4174,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.25, 0.25))
-plt.yticks(np.arange(10.5, 17.25, 0.25))
+plt.xticks(np.arange(10.5, 18, 0.25))
+plt.yticks(np.arange(10.5, 18.25, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -4179,8 +4195,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('AUTO (Mag AB)')
 plt.ylabel('PETRO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.5, 18, 0.25))
+plt.yticks(np.arange(10.5, 18, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
@@ -4200,8 +4216,8 @@ plt.xticks(rotation=90, ha='right')
 plt.xlabel('PETRO (Mag AB)')
 plt.ylabel('ISO (Mag AB)')
 plt.grid(linestyle='--')
-plt.xticks(np.arange(10.5, 17.5, 0.25))
-plt.yticks(np.arange(10.5, 17.5, 0.25))
+plt.xticks(np.arange(10.5, 18, 0.25))
+plt.yticks(np.arange(10.5, 18, 0.25))
 #plt.legend(bbox_to_anchor=(1.0, 1.0), loc='upper left', title='Galaxy')
 plt.tight_layout()
 plt.show()
